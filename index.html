@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HELIX: Neon Horizon</title>
+  <meta name="description" content="A cyberpunk tabletop RPG for two players. No GM. Shared pressure. Hard choices." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;700;900&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+  <div class="page-grid"></div>
+
+  <header class="site-header" id="site-header">
+    <div class="header-left"><span class="mono-label">HELIX<span class="acid-dot">:</span>NH</span></div>
+    <nav class="header-nav" id="header-nav">
+      <a href="#hero" data-section="hero">Home</a>
+      <a href="#manifesto" data-section="manifesto">About</a>
+      <a href="#helix-cycle" data-section="helix-cycle">HELIX</a>
+      <a href="#character" data-section="character">Character</a>
+      <a href="#augments" data-section="augments">Augments</a>
+      <a href="#checks" data-section="checks">Checks</a>
+      <a href="#combat" data-section="combat">Combat</a>
+      <a href="#net" data-section="net">Net</a>
+      <a href="#burden" data-section="burden">Burden</a>
+      <a href="#world" data-section="world">World</a>
+      <a href="#tables" data-section="tables">Tables</a>
+      <a href="#chargen" data-section="chargen">Generator</a>
+    </nav>
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="header-right"><span class="mono-label version-tag">v0.4</span></div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="hero">
+      <div class="hero-bg-shapes"><div class="hex hex-1"></div><div class="hex hex-2"></div><div class="hex hex-3"></div></div>
+      <div class="hero-inner">
+        <p class="hero-kicker"><span class="kicker-line"></span>Two players. No GM. Shared pressure.</p>
+        <h1 class="hero-title"><span class="title-line" data-delay="0">NEON</span><span class="title-line" data-delay="1">HORIZON</span></h1>
+        <p class="hero-subtitle">A cyberpunk tabletop RPG about survival, chrome, scarcity, and consequence.</p>
+        <div class="hero-tags"><span class="hero-tag">Mission-driven play</span><span class="hero-tag">GMless structure</span><span class="hero-tag">Street survival</span><span class="hero-tag">Chrome pressure</span></div>
+        <div class="hero-actions"><a href="#helix-cycle" class="btn btn-primary">Learn the system</a><a href="#chargen" class="btn btn-ghost">Build a character</a></div>
+      </div>
+      <div class="hero-scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+    </section>
+
+    <section id="manifesto" class="section">
+      <div class="section-inner">
+        <div class="section-marker"><span>01</span></div>
+        <div class="manifesto-layout">
+          <div class="manifesto-statement"><h2>BUILD THE MISSION.<br/>SHARE THE PRESSURE.<br/>LET THE CITY<br/>PUSH BACK.</h2></div>
+          <div class="manifesto-body">
+            <p>Neon Horizon is a two-player cyberpunk RPG with no dedicated GM. One player drives the scene. The other pushes back with pressure, complications, and consequences. Then you swap.</p>
+            <p>It is about missions, survival, debt, augmentation, and the cost of getting through one more night. The fiction is not on the page. It is in the air between you.</p>
+            <div class="manifesto-principles">
+              <div class="principle"><span class="principle-icon">&rarr;</span><div><strong>Driver says &ldquo;therefore.&rdquo;</strong><span>This happened, so now this.</span></div></div>
+              <div class="principle"><span class="principle-icon">&times;</span><div><strong>Push-back says &ldquo;however.&rdquo;</strong><span>This happened, but the ground shifts.</span></div></div>
+              <div class="principle"><span class="principle-icon">&empty;</span><div><strong>Dice say &ldquo;no.&rdquo;</strong><span>Neither player is the antagonist.</span></div></div>
+            </div>
+            <div class="drama-first">
+              <h4>Drama First</h4>
+              <p>If the answer is obvious and dramatic, just say it. Do not roll.</p>
+              <ol><li><strong>Obvious?</strong> Say it. Move on.</li><li><strong>Uncertain?</strong> Roll a Check.</li><li><strong>Stuck?</strong> Ask the Oracle. Max 3 per scene.</li></ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="helix-cycle" class="section section-dark">
+      <div class="section-inner">
+        <div class="section-marker"><span>02</span></div>
+        <div class="section-header-row">
+          <h2 class="section-title">The HELIX Cycle</h2>
+          <p class="section-subtitle">Five phases. One session. 75&ndash;105 minutes. Swap who drives first each session.</p>
+        </div>
+        <div class="helix-timeline">
+          <div class="helix-track"></div>
+          <div class="helix-phase" data-phase="hook"><div class="phase-marker"><span>H</span></div><div class="phase-content"><div class="phase-head"><h3>Hook</h3><span class="phase-time">~5 min</span></div><p class="phase-tagline">Take a job</p><p>The driver states what happened and why it matters. The other player asks one question that makes it worse.</p><button class="phase-example-btn" data-modal="hook-modal">View play example</button></div></div>
+          <div class="helix-phase" data-phase="explore"><div class="phase-marker"><span>E</span></div><div class="phase-content"><div class="phase-head"><h3>Explore</h3><span class="phase-time">20&ndash;30 min</span></div><p class="phase-tagline">Enter the scene</p><p>The driver frames scenes and pushes forward. The other player provides opposition and consequences. 1&ndash;2 scenes.</p><button class="phase-example-btn" data-modal="explore-modal">View play example</button></div></div>
+          <div class="helix-phase helix-phase-swap" data-phase="leverage"><div class="phase-marker"><span>L</span></div><div class="phase-content"><div class="phase-head"><h3>Leverage</h3><span class="phase-time">15&ndash;20 min</span><span class="swap-badge">SWAP</span></div><p class="phase-tagline">Make your move</p><p>You swap. The biggest &ldquo;however&rdquo; of the session. Something shifts that the other player did not see coming.</p><button class="phase-example-btn" data-modal="leverage-modal">View play example</button></div></div>
+          <div class="helix-phase" data-phase="ignite"><div class="phase-marker"><span>I</span></div><div class="phase-content"><div class="phase-head"><h3>Ignite</h3><span class="phase-time">20&ndash;30 min</span></div><p class="phase-tagline">Escalate</p><p>The climax. Everything converges. The driver pushes toward the objective. Push-back throws everything at them.</p><button class="phase-example-btn" data-modal="ignite-modal">View play example</button></div></div>
+          <div class="helix-phase" data-phase="exhale"><div class="phase-marker"><span>X</span></div><div class="phase-content"><div class="phase-head"><h3>Exhale</h3><span class="phase-time">15&ndash;20 min</span></div><p class="phase-tagline">Pay the cost</p><p>Both players. No roles. Post-mission sequence:</p><div class="phase-detail exhale-sequence"><ol><li>Mission Burden Check</li><li>Burden Effects</li><li>Faction Turn</li><li>Pay</li><li>Downtime</li><li>Drive Progress</li><li>Flags</li></ol></div><button class="phase-example-btn" data-modal="exhale-modal">View play example</button></div></div>
+        </div>
+
+        <div class="prep-engagement-row">
+          <div class="prep-block"><h4>Prep</h4><p>Before Explore, each character makes one Prep Check using any Attribute + Tag.</p><div class="mini-table"><div><span>Full Hit</span><span>2 Prep</span></div><div><span>Twist</span><span>1 Prep + complication</span></div><div><span>Miss</span><span>0 Prep</span></div></div><p><strong>Spend:</strong> Boost (1), Flashback (1), Mitigate (1), Activate item (1), Absorb harm (2). Lost at mission end.</p></div>
+          <div class="prep-block"><h4>Approach &amp; Engagement</h4><p>Choose: Stealth, Social, Assault, Technical, or Deception. Roll d6:</p><div class="mini-table"><div><span>1</span><span>Desperate. Threat Clock starts at 2</span></div><div><span>2&ndash;3</span><span>Risky. Clocks at 0</span></div><div><span>4&ndash;5</span><span>Controlled. +1 bonus Prep</span></div><div><span>6</span><span>Dominant. first Check auto Full Hit</span></div></div></div>
+        </div>
+        <div class="prep-engagement-row">
+          <div class="prep-block"><h4>Scene Framing</h4><p>Every scene: <strong>Shot</strong> (location), <strong>Cast</strong> (PCs + 0&ndash;2 NPCs), <strong>Pressure</strong> (what goes wrong), <strong>Question</strong> (what this answers). When nothing new is happening, cut.</p></div>
+          <div class="prep-block"><h4>Crossroads</h4><p>Irreversible decision? Frame as a yes/no with no take-backs. The character most affected decides. No roll. The decision is the point.</p></div>
+        </div>
+        <div class="therefore-however"><h4>The Cycle in Therefore / However</h4>
+          <div class="th-row"><span class="th-phase">H</span><span class="th-connector">Therefore</span><span class="th-desc">a job exists, therefore we go</span></div>
+          <div class="th-row"><span class="th-phase">E</span><span class="th-connector">Therefore &rarr; However</span><span class="th-desc">investigate, learn, however it is worse</span></div>
+          <div class="th-row highlight"><span class="th-phase">L</span><span class="th-connector">HOWEVER</span><span class="th-desc">everything you built. however, the world shifted</span></div>
+          <div class="th-row"><span class="th-phase">I</span><span class="th-connector">Therefore &times; 3</span><span class="th-desc">committed, driving, every action causes the next</span></div>
+          <div class="th-row"><span class="th-phase">X</span><span class="th-connector">Therefore</span><span class="th-desc">the mission ended, therefore consequences</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="character" class="section">
+      <div class="section-inner">
+        <div class="section-marker"><span>03</span></div>
+        <div class="section-header-row"><h2 class="section-title">Make Someone Worth Hurting</h2><p class="section-subtitle">Fast, readable, and charged with future problems.</p></div>
+        <div class="char-creation-grid">
+          <div class="char-step"><div class="step-num">01</div><h3>Concept</h3><p>One sentence. Who are you?</p></div>
+          <div class="char-step"><div class="step-num">02</div><h3>Attributes</h3><p>Assign d10, d8, d8, d6 across GUTS, EDGE, WITS, NERVE.</p>
+            <div class="attr-grid"><div class="attr-card"><strong>GUTS</strong><span>Force, endurance, toughness</span></div><div class="attr-card"><strong>EDGE</strong><span>Speed, reflexes, stealth</span></div><div class="attr-card"><strong>WITS</strong><span>Perception, tech, hacking</span></div><div class="attr-card"><strong>NERVE</strong><span>Composure, social, deception</span></div></div>
+            <p class="variant-note">Variants: Gritty (d8,d8,d6,d6) &middot; Heroic (d10,d10,d8,d6) &middot; Prodigy (d12,d8,d6,d6)</p></div>
+          <div class="char-step"><div class="step-num">03</div><h3>Tags (Choose 3)</h3><p>When a Tag applies, step one die up.</p><div class="tag-types"><span><strong>Origin</strong>. where you came from</span><span><strong>Role</strong>. what you do now</span><span><strong>Wildcard</strong>. anything</span></div></div>
+          <div class="char-step"><div class="step-num">04</div><h3>Flaw</h3><p>One concrete vulnerability that creates problems in play.</p></div>
+          <div class="char-step"><div class="step-num">05</div><h3>Drive</h3><p>One active goal. 8-segment Progress Track.</p></div>
+          <div class="char-step char-step-wide"><div class="step-num">06</div><h3>Augments (Choose 2)</h3><p>Max 4 over a campaign. See the <a href="#augments">full augment list</a>.</p>
+            <div class="augment-types"><div class="aug-type"><strong>Chrome</strong><span>Cyberware. +1 Burden after creation. Ticks Humanity Clock.</span></div><div class="aug-type"><strong>Skill</strong><span>Training, expertise. Free.</span></div><div class="aug-type"><strong>Bond</strong><span>Companion NPC. Has a Resource Die.</span></div><div class="aug-type"><strong>Gear</strong><span>Signature item. Can be lost.</span></div></div></div>
+          <div class="char-step"><div class="step-num">07</div><h3>Loadout</h3>
+            <p>Declare your Load Level before the mission. <strong>Do not choose specific items in advance.</strong> When you need a piece of gear, mark a slot and say you brought it. If it makes sense that you would have it, you do.</p>
+            <div class="load-levels"><div class="load-level"><strong>Light</strong><span>3 slots. Fast, inconspicuous.</span></div><div class="load-level"><strong>Normal</strong><span>5 slots. Standard kit.</span></div><div class="load-level"><strong>Heavy</strong><span>7 slots. Disadvantage on stealth/mobility.</span></div></div>
+            <p class="load-note">Named items (signature weapon, cyberdeck, forged ID) are listed on your sheet separately. Programs take 1 slot each. The Supply Die covers mundane consumables.</p></div>
+          <div class="char-step"><div class="step-num">08</div><h3>Connections</h3><p>One trusted (Willingness d8). One who wants something (d6). Roll Willingness for degradation (1&ndash;2: shrinks) each time you call.</p></div>
+          <div class="char-step"><div class="step-num">09</div><h3>Tracks</h3><p>BODY: 6 boxes. NERVE: 6 boxes. Burden: 1. Supply: d8. Momentum: 0. Drive: 0/8. Humanity Clock: 0/8.</p></div>
+        </div>
+
+        <div class="example-characters"><h3 class="examples-title">Example Characters</h3>
+          <div class="example-char-grid">
+            <div class="example-char"><div class="char-name">KIRA VASQUEZ</div><div class="char-concept">Former Ferrik bodyguard. Got her principal killed. Drinks.</div><div class="char-stats"><span>GUTS d10</span><span>EDGE d8</span><span>WITS d6</span><span>NERVE d8</span></div><div class="char-details"><p><strong>Tags:</strong> Ferrik Corporate Security Training &middot; Close Protection Specialist &middot; I Can Read a Room Before the Door Opens</p><p><strong>Flaw:</strong> The bottle calls every night. Without a drink, my hands shake.</p><p><strong>Drive:</strong> Find who set up the ambush that killed my principal.</p><p><strong>Augments:</strong> Dead Eye (Skill), Subdermal Plating (Chrome)</p></div></div>
+            <div class="example-char"><div class="char-name">ZERO</div><div class="char-concept">Seventeen. Self-taught netrunner. Runs data for food.</div><div class="char-stats"><span>GUTS d6</span><span>EDGE d8</span><span>WITS d10</span><span>NERVE d8</span></div><div class="char-details"><p><strong>Tags:</strong> Grew Up in the Flooded Undercity &middot; Self-Taught Netrunner on Salvaged Gear &middot; I Can Disappear in Any Crowd Under Twenty</p><p><strong>Flaw:</strong> Will not ask for help even when drowning.</p><p><strong>Drive:</strong> Find my sister, who vanished into a Solvane recruitment program.</p><p><strong>Augments:</strong> Scrap Hound (Skill), Neural Interface (Chrome)</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="augments" class="section section-dark">
+      <div class="section-inner">
+        <div class="section-marker"><span>03b</span></div>
+        <div class="section-header-row"><h2 class="section-title">Augments</h2><p class="section-subtitle">25 structured abilities across four types. Each has a starting ability and two upgrades.</p></div>
+        <div class="aug-filter-tabs">
+          <button class="aug-tab active" data-augtype="all">All (25)</button>
+          <button class="aug-tab" data-augtype="chrome">Chrome (7)</button>
+          <button class="aug-tab" data-augtype="skill">Skill (8)</button>
+          <button class="aug-tab" data-augtype="bond">Bond (5)</button>
+          <button class="aug-tab" data-augtype="gear">Gear (5)</button>
+        </div>
+        <div class="augments-list" id="augments-list">
+
+          <div class="aug-card" data-augtype="chrome">
+            <div class="aug-header"><h4>Neural Interface</h4><span class="aug-badge chrome">Chrome. Standard</span></div>
+            <p class="aug-flavor">Basic jack behind the ear. Required for netrunning.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Step up WITS when interfacing with digital systems or jacking into the Net.</div>
+              <div><strong>Upgrade 1:</strong> First action in any hacked system never triggers Detection Clock.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, act in the Net AND meatspace in the same Exchange.</div>
+            </div>
+            <div class='aug-cost'>Burden: +1 post-creation · Humanity: 1 tick</div>
+          </div>
+          <div class="aug-card" data-augtype="chrome">
+            <div class="aug-header"><h4>Reflex Booster</h4><span class="aug-badge chrome">Chrome. Military</span></div>
+            <p class="aug-flavor">Nerve-splicing along arms and spine.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Step up EDGE when speed and reflexes matter.</div>
+              <div><strong>Upgrade 1:</strong> Once per session, act first in any Exchange regardless of fiction.</div>
+              <div><strong>Upgrade 2:</strong> When enemy at Close misses you, free counterattack.</div>
+            </div>
+            <div class='aug-cost'>Burden: +1 · Humanity: 2 ticks</div>
+          </div>
+          <div class="aug-card" data-augtype="chrome">
+            <div class="aug-header"><h4>Optical Suite</h4><span class="aug-badge chrome">Chrome. Standard</span></div>
+            <p class="aug-flavor">Replacement eyes. Zoom, low-light, recording.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Step up WITS when observing, surveilling, or reading a scene.</div>
+              <div><strong>Upgrade 1:</strong> Thermal vision. see heat signatures through walls at Near range.</div>
+              <div><strong>Upgrade 2:</strong> Target lock. spend one Exchange aiming, next ranged Twist becomes Full Hit for damage.</div>
+            </div>
+            <div class='aug-cost'>Burden: +1 · Humanity: 1 tick</div>
+          </div>
+          <div class="aug-card" data-augtype="chrome">
+            <div class="aug-header"><h4>Mantis Blades</h4><span class="aug-badge chrome">Chrome. Military</span></div>
+            <p class="aug-flavor">Retractable forearm blades.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Built-in weapon: d8 damage, Concealable, Close Only. Step up EDGE in melee.</div>
+              <div><strong>Upgrade 1:</strong> Damage steps to d10. Monofilament. ignores armor below Heavy.</div>
+              <div><strong>Upgrade 2:</strong> On Full Hit: deal damage OR disarm OR impale (GUTS Check to break free).</div>
+            </div>
+            <div class='aug-cost'>Burden: +1 · Humanity: 2 ticks</div>
+          </div>
+          <div class="aug-card" data-augtype="chrome">
+            <div class="aug-header"><h4>Subdermal Plating</h4><span class="aug-badge chrome">Chrome. Standard</span></div>
+            <p class="aug-flavor">Armor mesh beneath the skin.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Permanent Light armor (+2). Undetectable.</div>
+              <div><strong>Upgrade 1:</strong> Upgrades to Medium (+3). Skin looks normal.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, reduce Severe to Major.</div>
+            </div>
+            <div class='aug-cost'>Burden: +1 · Humanity: 1 tick</div>
+          </div>
+          <div class="aug-card" data-augtype="chrome">
+            <div class="aug-header"><h4>Synthetic Heart</h4><span class="aug-badge chrome">Chrome. Military</span></div>
+            <p class="aug-flavor">Mechanical heart.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Step up GUTS for endurance and stamina. BODY track becomes 7 boxes.</div>
+              <div><strong>Upgrade 1:</strong> Once per session, when BODY Broken, stand up at 1 box. No cost. No Scar.</div>
+              <div><strong>Upgrade 2:</strong> Immune to poisons, drugs, and chemical weapons.</div>
+            </div>
+            <div class='aug-cost'>Burden: +1 · Humanity: 2 ticks</div>
+          </div>
+          <div class="aug-card" data-augtype="chrome">
+            <div class="aug-header"><h4>Ghost Module</h4><span class="aug-badge chrome">Chrome. Experimental</span></div>
+            <p class="aug-flavor">Full-body signal suppression.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Step up EDGE against electronic detection. Invisible to sensors.</div>
+              <div><strong>Upgrade 1:</strong> Invisible on the Net. Hackers and trackers cannot target you.</div>
+              <div><strong>Upgrade 2:</strong> Extend suppression to one ally at Close range.</div>
+            </div>
+            <div class='aug-cost'>Burden: +1 · Humanity: 3 ticks · Cannot use Net while active</div>
+          </div>
+          <div class="aug-card" data-augtype="skill">
+            <div class="aug-header"><h4>The Rolodex</h4><span class="aug-badge skill">Skill. Social</span></div>
+            <p class="aug-flavor">You know people. They owe you.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> 2 extra Connections at d8. Advantage on NERVE to find contacts.</div>
+              <div><strong>Upgrade 1:</strong> Once per session, spend 1 Momentum to declare an NPC owes you.</div>
+              <div><strong>Upgrade 2:</strong> On Twist gathering info, still get full intel. Complication is something else.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="skill">
+            <div class="aug-header"><h4>Steady Hands</h4><span class="aug-badge skill">Skill. Medical</span></div>
+            <p class="aug-flavor">You keep people alive.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Field Treatment Twists still clear 2 boxes. Complication unrelated to your work.</div>
+              <div><strong>Upgrade 1:</strong> Self-surgery.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, spend 1 Momentum to negate harm that would Break an ally.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="skill">
+            <div class="aug-header"><h4>Dead Eye</h4><span class="aug-badge skill">Skill. Combat</span></div>
+            <p class="aug-flavor">You do not miss when it matters.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> On Spark with any ranged weapon, attack a second target in the same zone.</div>
+              <div><strong>Upgrade 1:</strong> Ranged weapon Damage Die steps up by one in your hands.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, first ranged attack is automatic Full Hit.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="skill">
+            <div class="aug-header"><h4>Shadow Step</h4><span class="aug-badge skill">Skill. Stealth</span></div>
+            <p class="aug-flavor">People do not see you unless you want them to.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> From hidden, a Twist counts as Full Hit for damage.</div>
+              <div><strong>Upgrade 1:</strong> After attacking, spend 1 Momentum to vanish.</div>
+              <div><strong>Upgrade 2:</strong> Against unaware targets, Full Hit damage rolls three times, take highest.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="skill">
+            <div class="aug-header"><h4>Scrap Hound</h4><span class="aug-badge skill">Skill. Salvage</span></div>
+            <p class="aug-flavor">If it is broken, you can use it.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Scavenge Full Hits: roll loot table twice, take both. Repair: +3 steps instead of +2.</div>
+              <div><strong>Upgrade 1:</strong> Once per session, field-mod a weapon: add or remove a Tag until Quality degrades.</div>
+              <div><strong>Upgrade 2:</strong> One maintained item's Quality Die never drops below d8.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="skill">
+            <div class="aug-header"><h4>Silver Tongue</h4><span class="aug-badge skill">Skill. Social</span></div>
+            <p class="aug-flavor">They believe you because you make them want to.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> On NERVE Twist to persuade/deceive, they always believe you. Complication is never doubt.</div>
+              <div><strong>Upgrade 1:</strong> Entering a social scene, ask one power-dynamics question. Truthful answer.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, NERVE Check to flip an NPC's allegiance for the scene.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="skill">
+            <div class="aug-header"><h4>Iron Will</h4><span class="aug-badge skill">Skill. Endurance</span></div>
+            <p class="aug-flavor">You have been broken before. You got back up.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> When your Flaw is invoked against you, gain 1 Momentum even if you resist it.</div>
+              <div><strong>Upgrade 1:</strong> NERVE harm from social pressure or fear is reduced by 1 box.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, when you would gain a Scar, choose which attribute it affects.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="skill">
+            <div class="aug-header"><h4>Wheel Artist</h4><span class="aug-badge skill">Skill. Transport</span></div>
+            <p class="aug-flavor">If it moves, you can drive it.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Step up EDGE for vehicle Checks. Chases never start at Desperate position.</div>
+              <div><strong>Upgrade 1:</strong> Vehicle takes one less severity step of damage from collisions and gunfire.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, auto-succeed an escape or pursuit Check.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="bond">
+            <div class="aug-header"><h4>Street Kid</h4><span class="aug-badge bond">Bond. Companion</span></div>
+            <p class="aug-flavor">Resourceful, small, overlooked.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Scout: Advantage on WITS Checks for recon.</div>
+              <div><strong>Upgrade 1:</strong> Carry 2 extra items. Deliver messages without Check.</div>
+              <div><strong>Upgrade 2:</strong> Fight dirty: d6 Check, d6 Damage.</div>
+            </div>
+            <div class='aug-cost'>Resource: Loyalty (d8). Shrinks when endangered, promises broken, neglected.</div>
+          </div>
+          <div class="aug-card" data-augtype="bond">
+            <div class="aug-header"><h4>Attack Drone</h4><span class="aug-badge bond">Bond. Machine</span></div>
+            <p class="aug-flavor">Eyes in the sky. Teeth when you need them.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Surveillance: cannot be surprised while deployed.</div>
+              <div><strong>Upgrade 1:</strong> Armed: d6 Check, d8 Damage.</div>
+              <div><strong>Upgrade 2:</strong> Hacking: independent Net actions at Low–Medium security.</div>
+            </div>
+            <div class='aug-cost'>Resource: Power (d8). Recharge at any power source.</div>
+          </div>
+          <div class="aug-card" data-augtype="bond">
+            <div class="aug-header"><h4>AI Fragment</h4><span class="aug-badge bond">Bond. Digital</span></div>
+            <p class="aug-flavor">Salvaged code. Functional. Opinions.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Data analysis: once per scene, WITS Check with Advantage on tech questions.</div>
+              <div><strong>Upgrade 1:</strong> Direct interface: Advantage on breach Checks.</div>
+              <div><strong>Upgrade 2:</strong> Independent action: d8 Check in Net while you act in meatspace.</div>
+            </div>
+            <div class='aug-cost'>Resource: Stability (d8). Shrinks from ICE, EMP, or ignoring its advice.</div>
+          </div>
+          <div class="aug-card" data-augtype="bond">
+            <div class="aug-header"><h4>Stray Dog</h4><span class="aug-badge bond">Bond. Animal</span></div>
+            <p class="aug-flavor">Loyal. Loud. Willing to die for you.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Alert: cannot be ambushed while dog is present.</div>
+              <div><strong>Upgrade 1:</strong> Tracking: Advantage on WITS to locate or follow.</div>
+              <div><strong>Upgrade 2:</strong> Attack: d6 Check, d6 Damage. Full Hit knocks prone or disarms.</div>
+            </div>
+            <div class='aug-cost'>Resource: Loyalty (d8). Shrinks when hurt, starved, or left behind.</div>
+          </div>
+          <div class="aug-card" data-augtype="bond">
+            <div class="aug-header"><h4>Ghost in the Machine</h4><span class="aug-badge bond">Bond. Digital</span></div>
+            <p class="aug-flavor">Dead person's personality running in your wetware.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Memory: once per session, ask Oracle about the city's past. Filtered through Ghost's biases.</div>
+              <div><strong>Upgrade 1:</strong> Legacy systems: Advantage on Checks involving pre-Collapse tech.</div>
+              <div><strong>Upgrade 2:</strong> Takeover: one Exchange, use Ghost's d8 WITS and d8 NERVE instead of yours.</div>
+            </div>
+            <div class='aug-cost'>Resource: Stability (d8). Shrinks from EMP, neural disruption, personality conflicts.</div>
+          </div>
+          <div class="aug-card" data-augtype="gear">
+            <div class="aug-header"><h4>Custom Cyberdeck</h4><span class="aug-badge gear">Gear. Tech</span></div>
+            <p class="aug-flavor">Hand-built. Overclocked. Irreplaceable.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Quality never below d8. Advantage on breach Checks.</div>
+              <div><strong>Upgrade 1:</strong> One pre-loaded Program (no slot cost).</div>
+              <div><strong>Upgrade 2:</strong> Once per session, ignore one Detection Clock tick.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="gear">
+            <div class="aug-header"><h4>Prototype Weapon</h4><span class="aug-badge gear">Gear. Weapon</span></div>
+            <p class="aug-flavor">One of a kind. They do not make these anymore.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Choose a weapon. Gains one extra Tag. Quality d10.</div>
+              <div><strong>Upgrade 1:</strong> Damage Die steps up permanently.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, automatic Full Hit on damage.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="gear">
+            <div class="aug-header"><h4>Armored Coat</h4><span class="aug-badge gear">Gear. Armor</span></div>
+            <p class="aug-flavor">Looks like a coat. Stops like a wall.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Light armor (+2), fully concealable.</div>
+              <div><strong>Upgrade 1:</strong> Upgrades to Medium (+3), still concealable.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, reduce Severe to Major.</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="gear">
+            <div class="aug-header"><h4>Medkit Prime</h4><span class="aug-badge gear">Gear. Medical</span></div>
+            <p class="aug-flavor">Military-grade field surgery in a case.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> Field Treatment clears 3 boxes instead of 2 on Full Hit.</div>
+              <div><strong>Upgrade 1:</strong> Stabilize a Broken character without a Check. Scar, not death.</div>
+              <div><strong>Upgrade 2:</strong> Once per session, remove a Scar during a downtime scene (full scene of surgery).</div>
+            </div>
+            
+          </div>
+          <div class="aug-card" data-augtype="gear">
+            <div class="aug-header"><h4>Forged Identity</h4><span class="aug-badge gear">Gear. Cover</span></div>
+            <p class="aug-flavor">You are someone else. The paperwork agrees.</p>
+            <div class="aug-tiers">
+              <div><strong>Starting:</strong> One complete false identity with history, credstick, biometrics. Advantage on NERVE to maintain cover.</div>
+              <div><strong>Upgrade 1:</strong> Identity has a faction connection at Goodwill d6. Real enough for favors.</div>
+              <div><strong>Upgrade 2:</strong> Burn the identity to automatically escape pursuit or investigation. Identity is gone.</div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="humanity-block"><h4>The Humanity Clock</h4>
+          <p>Chrome ticks an 8-segment Humanity Clock (Standard 1, Military 2, Experimental 3). When full, roll d6:</p>
+          <div class="humanity-table">
+            <div><span>1</span>Rejection. Severe BODY harm. One chrome offline.</div>
+            <div><span>2</span>Dissociation. lost hours. Partner narrates. 2 NERVE boxes.</div>
+            <div><span>3</span>Emotional flatline. Disadvantage on NERVE for the session.</div>
+            <div><span>4</span>Phantom feedback. Disadvantage on EDGE for the session.</div>
+            <div><span>5</span>Chrome Scar. permanent Scar related to augmentation.</div>
+            <div><span>6</span>Compulsion. chrome wants something. Pursue it or 2 NERVE boxes.</div>
+          </div>
+          <p>Resets to 4 (not zero). Second fill: permanent NERVE Disadvantage. Third fill: retirement.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="checks" class="section">
+      <div class="section-inner">
+        <div class="section-marker"><span>04</span></div>
+        <div class="section-header-row"><h2 class="section-title">The Core Mechanic</h2><p class="section-subtitle">Roll your Attribute Die twice. Each die showing 5+ is a Pass.</p></div>
+        <div class="check-results">
+          <div class="check-result hit"><div class="result-dice"><span class="die pass">&#10003;</span><span class="die pass">&#10003;</span></div><h3>Full Hit</h3><p>You get what you wanted. You narrate.</p></div>
+          <div class="check-result twist"><div class="result-dice"><span class="die pass">&#10003;</span><span class="die fail">&#10007;</span></div><h3>Twist</h3><p>You succeed, but there is a cost.</p></div>
+          <div class="check-result miss"><div class="result-dice"><span class="die fail">&#10007;</span><span class="die fail">&#10007;</span></div><h3>Miss</h3><p>Situation shifts against you. Partner narrates.</p></div>
+        </div>
+        <div class="die-ladder-visual"><h4>Die Step Ladder</h4><div class="ladder"><span class="ladder-die">d6</span><span class="ladder-arrow">&rarr;</span><span class="ladder-die">d8</span><span class="ladder-arrow">&rarr;</span><span class="ladder-die">d10</span><span class="ladder-arrow">&rarr;</span><span class="ladder-die">d12</span></div><p>Tags, positioning, favorable fiction step UP. Bad footing, stress, hostile conditions step DOWN. Cannot exceed d12. Below d6, die auto-fails.</p></div>
+        <div class="special-results">
+          <div class="special spark"><strong>SPARK</strong>. Max face on a Full Hit. Bonus effect.</div>
+          <div class="special catastrophe"><strong>CATASTROPHE</strong>. Double 1s. Fiction gets worse in a new direction.</div>
+          <div class="special perfect"><strong>PERFECT</strong>. Double max. Extraordinary success.</div>
+        </div>
+        <div class="momentum-block"><h4>Momentum</h4><p>Earn 1: play Flaw at a cost, risk pursuing Drive, do something remarkable. Cap: 5. Resets each session.</p>
+          <div class="momentum-spends">
+            <div class="m-spend"><span class="m-cost">1</span><strong>Step Up</strong>. one die next Check</div>
+            <div class="m-spend"><span class="m-cost">1</span><strong>Flashback</strong>. prior preparation</div>
+            <div class="m-spend"><span class="m-cost">1</span><strong>Mitigate</strong>. shift table down 1 row</div>
+            <div class="m-spend"><span class="m-cost">2</span><strong>Defy Odds</strong>. reroll a Miss</div>
+            <div class="m-spend"><span class="m-cost">2</span><strong>Narrative Authority</strong>. introduce a fact</div>
+            <div class="m-spend"><span class="m-cost">3</span><strong>Refuse to Fall</strong>. Broken &rarr; 1 box (1x/session)</div>
+          </div>
+        </div>
+        <div class="prep-engagement-row">
+          <div class="prep-block"><h4>Supply Die</h4><p>Starts at d8. General readiness: food, ammo, tools, pocket money. Roll when fiction demands consumption. On 1&ndash;2, it shrinks. Below d6, out of everything basic. Need a specific mundane item not on your sheet? Oracle (d6, 5+ = yes).</p></div>
+          <div class="prep-block"><h4>Recovery</h4><div class="mini-table"><div><span>Rest (downtime, safe)</span><span>Clear 2 boxes</span></div><div><span>Full Recovery (days, medical)</span><span>Clear all</span></div><div><span>Field Treatment (WITS)</span><span>Clear 2 on one track. Miss = Minor.</span></div></div><p>No quick recovery during missions.</p></div>
+        </div>
+        <div class="prep-engagement-row">
+          <div class="prep-block"><h4>Drive Progress</h4><div class="mini-table"><div><span>Minor (intel, connection)</span><span>+1 segment</span></div><div><span>Significant (related mission)</span><span>+2</span></div><div><span>Breakthrough (pivotal discovery)</span><span>+3</span></div></div><p>Drive Check: roll d10 vs filled segments. &le; segments = Resolved. Over by 1&ndash;2 = Almost. Over by 3+ = Path changes.</p></div>
+          <div class="prep-block"><h4>Clocks</h4><p>Threat Clocks count toward bad. Progress Tracks count toward good. Sizes: 4 (urgent), 6 (standard), 8 (long-term). Full Hit toward Progress: +2. Twist: +1. Miss: +1 Threat Clock. Use 4 instead of 6 for two-player games.</p></div>
+        </div>
+
+        <div class="consequence-tables"><h4>Consequence Tables</h4><p class="ct-intro">On Twist or Miss, partner invents a consequence or rolls d8:</p>
+          <div class="table-tabs">
+            <button class="table-tab active" data-table="combat-ct">Combat</button>
+            <button class="table-tab" data-table="social-ct">Social</button>
+            <button class="table-tab" data-table="stealth-ct">Stealth</button>
+            <button class="table-tab" data-table="hacking-ct">Hacking</button>
+            <button class="table-tab" data-table="exploration-ct">Exploration</button>
+          </div>
+          <div class="table-content active" id="combat-ct"><table><thead><tr><th>d8</th><th>Twist</th><th>Miss</th></tr></thead><tbody><tr><td>1</td><td>Position exposed</td><td>Flanked or surrounded</td></tr><tr><td>2</td><td>Collateral damage</td><td>Ally hit instead</td></tr><tr><td>3</td><td>Weapon issue. roll Quality</td><td>Weapon knocked away</td></tr><tr><td>4</td><td>Reinforcements coming. tick Clock</td><td>Reinforcements arrive now</td></tr><tr><td>5</td><td>Enemy counterattack</td><td>Enemy double attack</td></tr><tr><td>6</td><td>Driven from position</td><td>Environment turns hostile</td></tr><tr><td>7</td><td>Connection strained</td><td>NPC ally turns/flees</td></tr><tr><td>8</td><td>Take Minor harm</td><td>Take Major harm</td></tr></tbody></table></div>
+          <div class="table-content" id="social-ct"><table><thead><tr><th>d8</th><th>Twist</th><th>Miss</th></tr></thead><tbody><tr><td>1</td><td>They believe you but want something</td><td>They see through you</td></tr><tr><td>2</td><td>Info gained but overheard</td><td>You offend. future Disadvantage</td></tr><tr><td>3</td><td>They agree with conditions</td><td>They alert someone unwanted</td></tr><tr><td>4</td><td>You revealed too much</td><td>They manipulate you. 1 NERVE</td></tr><tr><td>5</td><td>Deal worse than hoped</td><td>Deal falls through</td></tr><tr><td>6</td><td>Connection implicated</td><td>Connection Willingness ticks</td></tr><tr><td>7</td><td>You owe a favor</td><td>Bridge burned</td></tr><tr><td>8</td><td>Flaw triggered</td><td>Drive complicated. Progress -1</td></tr></tbody></table></div>
+          <div class="table-content" id="stealth-ct"><table><thead><tr><th>d8</th><th>Twist</th><th>Miss</th></tr></thead><tbody><tr><td>1</td><td>Left evidence. tick Clock</td><td>Spotted. combat or chase</td></tr><tr><td>2</td><td>Security activates behind</td><td>Alarm. Threat +2</td></tr><tr><td>3</td><td>Partner exposed</td><td>Separated from partner</td></tr><tr><td>4</td><td>Gear abandoned/damaged</td><td>Trapped</td></tr><tr><td>5</td><td>Took too long. tick Clock</td><td>Patrol catches you</td></tr><tr><td>6</td><td>Saw something bad</td><td>Hidden countermeasure. Minor</td></tr><tr><td>7</td><td>Disguise strained</td><td>Identity compromised</td></tr><tr><td>8</td><td>Unexpected NPC</td><td>Target moved/changed</td></tr></tbody></table></div>
+          <div class="table-content" id="hacking-ct"><table><thead><tr><th>d8</th><th>Twist</th><th>Miss</th></tr></thead><tbody><tr><td>1</td><td>Detection +1</td><td>Detection +2</td></tr><tr><td>2</td><td>Partial access</td><td>Locked out</td></tr><tr><td>3</td><td>ICE activates</td><td>Black ICE. Major NERVE</td></tr><tr><td>4</td><td>Data encrypted/incomplete</td><td>Trace on location</td></tr><tr><td>5</td><td>Deck overheats</td><td>Neural spike. Minor NERVE</td></tr><tr><td>6</td><td>Silent alarm</td><td>Counterattack. jack out or Severe</td></tr><tr><td>7</td><td>Another netrunner</td><td>AI fragment notices you</td></tr><tr><td>8</td><td>Detection +1 and ICE</td><td>Full lockdown</td></tr></tbody></table></div>
+          <div class="table-content" id="exploration-ct"><table><thead><tr><th>d8</th><th>Twist</th><th>Miss</th></tr></thead><tbody><tr><td>1</td><td>Route longer. tick Clock</td><td>Lost. waste a scene</td></tr><tr><td>2</td><td>Hazard. Minor BODY</td><td>Hazard. Major BODY</td></tr><tr><td>3</td><td>Found but guarded</td><td>Location picked clean</td></tr><tr><td>4</td><td>Supply Die rolls</td><td>Supply auto-degrades</td></tr><tr><td>5</td><td>Unexpected NPC</td><td>Ambush</td></tr><tr><td>6</td><td>Conditions worsen</td><td>Structural failure. Severe or flee</td></tr><tr><td>7</td><td>Gear stressed</td><td>Gear lost</td></tr><tr><td>8</td><td>Find something unexpected</td><td>Path requires sacrifice</td></tr></tbody></table></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="combat" class="section section-dark">
+      <div class="section-inner">
+        <div class="section-marker"><span>05</span></div>
+        <div class="section-header-row"><h2 class="section-title">Fast. Dangerous. Positional.</h2><p class="section-subtitle">Describe situation. Declare intent. Roll. Resolve the exchange.</p></div>
+        <div class="combat-grid">
+          <div class="combat-block"><h4>Attack Sequence</h4><ol class="attack-sequence"><li>Check (Attribute &times;2, 5+ passes, Tag steps one up)</li><li>Full Hit: weapon die &times;2 take higher. Twist: weapon &times;1. Miss: none.</li><li>Compare to thresholds + armor. Mark harm boxes.</li></ol></div>
+          <div class="combat-block"><h4>Harm Tracks</h4><p>BODY (6 boxes) and NERVE (6 boxes). Minor = 1. Major = 2. Severe = 3.</p><p><strong>Broken:</strong> Blaze of Glory (auto Full Hit + Spark, then out) | Hold On (Scar) | Burn Permanent (back at 1).</p><p><strong>Scars:</strong> Inverse Tags. step a die DOWN when triggered.</p></div>
+        </div>
+
+        <div class="combat-block" style="margin-bottom:24px"><h4>Armor &amp; Damage Thresholds</h4>
+          <p>Base thresholds: damage &ge;4 is Major (2 boxes), damage &ge;8 is Severe (3 boxes). Below both thresholds is Minor (1 box). Armor raises both thresholds.</p>
+          <table class="armor-full-table"><thead><tr><th>Armor</th><th>Bonus</th><th>Major At</th><th>Severe At</th></tr></thead><tbody>
+            <tr><td>None</td><td>+0</td><td>4</td><td>8</td></tr>
+            <tr><td>Light</td><td>+2</td><td>6</td><td>10</td></tr>
+            <tr><td>Medium</td><td>+3</td><td>7</td><td>11</td></tr>
+            <tr><td>Heavy</td><td>+4</td><td>8</td><td>12</td></tr>
+          </tbody></table>
+          <p class="armor-note">When damage bounces off armor: change tactics. Hack their systems. EMP their chrome. Flank. Not every fight is won with bigger guns.</p>
+        </div>
+
+        <div class="weapons-section"><h4>Weapons</h4><div class="weapons-grid">
+          <div class="weapon"><span class="w-name">Fists / improvised</span><span class="w-die">d6</span><span class="w-tags">Close Only</span></div>
+          <div class="weapon"><span class="w-name">Knife / mono-blade</span><span class="w-die">d6</span><span class="w-tags">Concealable, Close Only</span></div>
+          <div class="weapon"><span class="w-name">Light pistol</span><span class="w-die">d8</span><span class="w-tags">Concealable, Ammo</span></div>
+          <div class="weapon"><span class="w-name">Heavy pistol</span><span class="w-die">d8</span><span class="w-tags">Loud, Ammo</span></div>
+          <div class="weapon"><span class="w-name">SMG</span><span class="w-die">d8</span><span class="w-tags">Loud, Ammo, Area</span></div>
+          <div class="weapon"><span class="w-name">Shotgun</span><span class="w-die">d10</span><span class="w-tags">Loud, Messy, Slow, Ammo</span></div>
+          <div class="weapon"><span class="w-name">Assault rifle</span><span class="w-die">d10</span><span class="w-tags">Loud, Ammo</span></div>
+          <div class="weapon"><span class="w-name">Sniper rifle</span><span class="w-die">d12</span><span class="w-tags">Loud, Precise, Slow, Ammo</span></div>
+          <div class="weapon"><span class="w-name">Frag grenade</span><span class="w-die">d10</span><span class="w-tags">Area, Loud, Messy</span></div>
+        </div></div>
+
+        <div class="weapon-tags-section"><h4>Weapon Tags</h4><div class="wtag-grid">
+          <div class="wtag"><strong>Concealable</strong> Hidden unless searched</div>
+          <div class="wtag"><strong>Loud</strong> Everyone nearby knows. May generate Burden.</div>
+          <div class="wtag"><strong>Messy</strong> Collateral damage</div>
+          <div class="wtag"><strong>Precise</strong> On Spark, choose which harm track</div>
+          <div class="wtag"><strong>Area</strong> Hits everyone in a zone</div>
+          <div class="wtag"><strong>Slow</strong> Reload/recharge between uses</div>
+          <div class="wtag"><strong>Unreliable</strong> On Catastrophe, breaks or jams</div>
+          <div class="wtag"><strong>Brutal</strong> Severe harm also inflicts a Scar</div>
+          <div class="wtag"><strong>Armor-Piercing</strong> Ignore 2 points of armor bonus</div>
+          <div class="wtag"><strong>EMP</strong> Disable one chrome/powered armor for 1 Exchange</div>
+          <div class="wtag"><strong>Shock</strong> NERVE harm instead of BODY</div>
+          <div class="wtag"><strong>Monofilament</strong> Ignores armor below Heavy</div>
+        </div></div>
+
+        <div class="prep-engagement-row">
+          <div class="prep-block"><h4>Range Zones</h4><div class="mini-table"><div><span>Close</span><span>Arm's reach</span></div><div><span>Near</span><span>Same room</span></div><div><span>Far</span><span>Down the block</span></div><div><span>Distant</span><span>Sniper range</span></div></div><p>Sketch 3&ndash;5 named zones for physical scenes.</p></div>
+          <div class="prep-block"><h4>NPC Threat Tiers</h4><div class="mini-table"><div><span>Ganger</span><span>d6 / d6&ndash;d8 / 1 hit</span></div><div><span>Professional</span><span>d8 / d8&ndash;d10 / 4 boxes</span></div><div><span>Elite</span><span>d10 / d10 / 6 boxes</span></div><div><span>Boss</span><span>d12 / d10&ndash;d12 + Tags / 8+ boxes</span></div></div>
+          <h4 style="margin-top:12px">NPC Action (d6)</h4><div class="mini-table"><div><span>1</span><span>Retreat/regroup/backup</span></div><div><span>2</span><span>Cover/defend</span></div><div><span>3</span><span>Press. flank, close, target gear</span></div><div><span>4</span><span>Attack most exposed</span></div><div><span>5</span><span>Attack most threatening</span></div><div><span>6</span><span>Unexpected. roll Oracle</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="net" class="section section-net">
+      <div class="section-inner">
+        <div class="section-marker"><span>06</span></div>
+        <div class="section-header-row"><h2 class="section-title">The Net</h2><p class="section-subtitle">Neural Interface + Cyberdeck. WITS Check to breach. Hacking runs alongside meatspace.</p></div>
+        <div class="security-levels"><h4>Security Levels</h4><div class="sec-grid">
+          <div class="sec-level"><span class="sec-name">Low (2&ndash;3)</span><div class="sec-details"><span class="sec-hit">Full Hit: Full access</span><span class="sec-twist">Twist: Trace, Detection +1</span><span class="sec-miss">Miss: Locked out</span></div></div>
+          <div class="sec-level"><span class="sec-name">Medium (4&ndash;5)</span><div class="sec-details"><span class="sec-hit">Full Hit: Clean action</span><span class="sec-twist">Twist: Detection +1 or partial</span><span class="sec-miss">Miss: ICE, NERVE harm or Detection +2</span></div></div>
+          <div class="sec-level"><span class="sec-name">High (6&ndash;7)</span><div class="sec-details"><span class="sec-hit">Full Hit: Success, Detection +1</span><span class="sec-twist">Twist: Partial, Detection +2</span><span class="sec-miss">Miss: Black ICE, Major NERVE</span></div></div>
+          <div class="sec-level"><span class="sec-name">Extreme (8&ndash;9)</span><div class="sec-details"><span class="sec-hit">Full Hit: Partial, Detection +1</span><span class="sec-twist">Twist: Minimal, Detection +2, ICE</span><span class="sec-miss">Miss: Trace, Severe NERVE, Lockdown</span></div></div>
+        </div></div>
+        <p style="margin-bottom:16px">Detection Clock: 4&ndash;6 segments. When full: active countermeasures.</p>
+        <div class="ice-programs-row">
+          <div class="ice-block"><h4>ICE</h4><div class="ice-list"><div class="ice"><strong>Watchdog</strong><span>d6/d6. Alerts, Detection +2</span></div><div class="ice"><strong>Barrier</strong><span>d8/d6. Blocks subsystem</span></div><div class="ice"><strong>Tracker</strong><span>d8/d8. Traces location</span></div><div class="ice"><strong>Black ICE</strong><span>d10/d10. Lethal feedback</span></div><div class="ice"><strong>Phantom</strong><span>d12/d12. Adaptive, calls more</span></div></div></div>
+          <div class="programs-block"><h4>Programs (1 loadout slot)</h4><div class="program-list"><div class="program"><strong>Cloak</strong><span>Prevent 1 Detection tick</span></div><div class="program"><strong>Hammer</strong><span>d10 vs ICE, skip Check</span></div><div class="program"><strong>Skeleton Key</strong><span>Bypass one Barrier</span></div><div class="program"><strong>Ghost Protocol</strong><span>Detection -2</span></div><div class="program"><strong>Siphon</strong><span>Copy file without Check</span></div><div class="program"><strong>Feedback Loop</strong><span>Turn defeated ICE against another</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="burden" class="section">
+      <div class="section-inner">
+        <div class="section-marker"><span>07</span></div>
+        <div class="section-header-row"><h2 class="section-title">Burden</h2><p class="section-subtitle">Debt, heat, attention, economic precarity. A 0&ndash;4 scale.</p></div>
+        <div class="burden-scale">
+          <div class="burden-level" data-level="0"><span class="bl-num">0</span><strong>Comfortable</strong><p>No effects. Rare.</p></div>
+          <div class="burden-level" data-level="1"><span class="bl-num">1</span><strong>Getting By</strong><p>Roll 1d6. On 5+: shock.</p></div>
+          <div class="burden-level" data-level="2"><span class="bl-num">2</span><strong>Precarious</strong><p>Roll 2d6. Each 5+ = shock. Disadvantage on money. Contacts degrade.</p></div>
+          <div class="burden-level" data-level="3"><span class="bl-num">3</span><strong>Struggling</strong><p>Roll 3d6. Each 5+ = shock. 1 downtime lost. Disadvantage NERVE (status).</p></div>
+          <div class="burden-level" data-level="4"><span class="bl-num">4</span><strong>Destitute</strong><p>Auto shock. 2 downtimes lost. Disadvantage NERVE/WITS. Chrome malfunctions.</p></div>
+        </div>
+        <div class="prep-engagement-row">
+          <div class="prep-block"><h4>Goes Up</h4><p>Chrome install (+1), messy jobs, economic shocks that escalate, safe house lost, Connection burned, choosing money over morality.</p></div>
+          <div class="prep-block"><h4>Goes Down</h4><p>Well-paying jobs (-1), faction support (-1), downtime working (-1), paying debts. Partner support: if both &le;2, effects 1 step lower.</p></div>
+        </div>
+        <div class="economic-shock"><h4>Economic Shock (d8)</h4><div class="shock-grid">
+          <div class="shock"><span>1</span>Rent hike. lose safe house unless 1 downtime</div><div class="shock"><span>2</span>Chrome lapse. one piece stops</div><div class="shock"><span>3</span>Credstick frozen</div><div class="shock"><span>4</span>Medical debt. Burden +1 or owe NPC</div><div class="shock"><span>5</span>Fixer's cut. Supply -1</div><div class="shock"><span>6</span>Repo. lose gear or Supply -2</div><div class="shock"><span>7</span>Favor called in. hooks next mission</div><div class="shock"><span>8</span>The squeeze. two shocks, roll twice</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section id="world" class="section section-dark">
+      <div class="section-inner">
+        <div class="section-marker"><span>08</span></div>
+        <div class="section-header-row"><h2 class="section-title">Meridian Sprawl</h2><p class="section-subtitle">Fourteen million people. Three corporations. A drowning city with secrets.</p></div>
+        <div class="districts-grid">
+          <div class="district"><div class="district-num">S7</div><h3>The Narrows</h3><p>Working-class. Community self-governance. Solvane buying buildings.</p><div class="district-tags">Crowded &middot; Rooftop Gardens &middot; Everybody Talks</div></div>
+          <div class="district"><div class="district-num">S12</div><h3>The Drain</h3><p>Undercity. Flooded. Canal Rats territory.</p><div class="district-tags">Flooded &middot; Dark &middot; No Law</div></div>
+          <div class="district"><div class="district-num">S3</div><h3>The Strip</h3><p>Entertainment. Neon. Memory Market. Orchid Syndicate.</p><div class="district-tags">Neon Glow &middot; Back Room Deals &middot; Memory Traders</div></div>
+          <div class="district"><div class="district-num">S9</div><h3>The Barrens</h3><p>Abandoned industrial. Iron Collective. Freedom.</p><div class="district-tags">Toxic Soil &middot; Makeshift Community &middot; No Grid</div></div>
+          <div class="district"><div class="district-num">S6</div><h3>The Bleed</h3><p>Dead zone. Expanding. No comms, no chrome. Pattern dreams.</p><div class="district-tags">Dead Electronics &middot; Deep Silence &middot; Expanding</div></div>
+          <div class="district"><div class="district-num">S1</div><h3>The Pinnacle</h3><p>Corporate towers. Above the smog. Invitation only.</p><div class="district-tags">Clean Air &middot; Corporate Security &middot; Glass and Steel</div></div>
+        </div>
+        <div class="world-mysteries"><h4>City Mysteries</h4><div class="mystery-grid">
+          <div class="mystery"><strong>The Vertical Farms</strong>. Veridyne's ag towers. Also the most comprehensive surveillance network in the city. The food is subsidized. Nobody asks why.</div>
+          <div class="mystery"><strong>The Engineered Monsoons</strong>. Veridyne's atmospheric processors doubled monsoon intensity. Water contracts tripled. Internal docs suggest they knew.</div>
+          <div class="mystery"><strong>The Memory Market</strong>. Sector 3. Buy and sell neural recordings. A real sunset costs a month's rent. Sometimes the memories do not separate.</div>
+          <div class="mystery"><strong>The Whisper Rail</strong>. Undercity subway. Three lines. Maintained by nobody. Always empty. Always on time. Nobody has found the driver.</div>
+        </div></div>
+        <div class="factions-section"><h4>Factions</h4><p class="factions-intro">Goal, Method, Clock, Goodwill Die. Roll Goodwill as bonus die. After calling, roll for degradation (1&ndash;2: shrinks). Below d6: cut off.</p>
+          <div class="factions-grid">
+            <div class="faction faction-corp"><strong>Solvane Industries</strong><span>Biotech, chrome, pharma. Augmentation monopoly.</span><span class="faction-clock">Dependency Protocol (8). NPCs: Dir. Maren Vos, Dr. Emil Sato.</span></div>
+            <div class="faction faction-corp"><strong>Ferrik Group</strong><span>Security, military. Security monopoly.</span><span class="faction-clock">Martial Authority (6). NPCs: Cmdr. Idris Okafor, Lt. Lena Stahl.</span></div>
+            <div class="faction faction-corp"><strong>Veridyne</strong><span>Infrastructure, energy, ag. Control dependence.</span><span class="faction-clock">Grid Lock (8). NPCs: CEO Priya Anand, Arch. Yuki Tanaka.</span></div>
+            <div class="faction faction-street"><strong>Canal Rats</strong><span>Waterway control. Goodwill d6.</span><span class="faction-clock">Rising Water (6)</span></div>
+            <div class="faction faction-street"><strong>Orchid Syndicate</strong><span>Vice and information. Goodwill d6.</span><span class="faction-clock">Hostile Takeover (6)</span></div>
+            <div class="faction faction-street"><strong>Iron Collective</strong><span>Mutual aid, defense. Goodwill d8.</span><span class="faction-clock">Crackdown (8)</span></div>
+            <div class="faction faction-street"><strong>The Unlinked</strong><span>Off-gridders. Goodwill d6.</span><span class="faction-clock">Pattern Convergence (8)</span></div>
+            <div class="faction faction-street"><strong>The Underground</strong><span>Hackers, activists. Goodwill d6.</span><span class="faction-clock">The Broadcast (8)</span></div>
+          </div>
+        </div>
+        <p class="timeline-note"><strong>Timeline:</strong> 2040s Climate collapse &rarr; 2050s Corporate Accords &rarr; 2060s Reclamation Wars &rarr; 2070s Reconstruction &rarr; 2080s The Emergence &rarr; 2090s Now.</p>
+      </div>
+    </section>
+
+    <section id="tables" class="section">
+      <div class="section-inner">
+        <div class="section-marker"><span>09</span></div>
+        <div class="section-header-row"><h2 class="section-title">Oracles &amp; Tables</h2><p class="section-subtitle">When neither player knows what happens next.</p></div>
+        <div class="prep-engagement-row">
+          <div class="prep-block"><h4>Yes/No Oracle (d6)</h4><div class="mini-table"><div><span>1</span><span>No, and...</span></div><div><span>2</span><span>No.</span></div><div><span>3</span><span>No, but...</span></div><div><span>4</span><span>Yes, but...</span></div><div><span>5</span><span>Yes.</span></div><div><span>6</span><span>Yes, and...</span></div></div></div>
+          <div class="prep-block"><h4>Job Generator</h4><p><strong>Client (d8):</strong> Fixer, Desperate civilian, Corp contact, Gang leader, Underground cell, Anonymous, Connection on sheet, Accidental.</p><p><strong>Target (d10):</strong> Person, Data, Place, Gear/tech, Shipment, Reputation, System, Secret, Chrome, Memory.</p><p><strong>Complication (d12):</strong> Competition, Client lying, Target not what it seems, Friendly faction opposite, Mole, Tight window, Innocents, Non-credit pay, Powerful enemy, Setup, Drive-connected, Requires the Bleed.</p></div>
+        </div>
+        <div class="prep-engagement-row">
+          <div class="prep-block"><h4>NPC Generator</h4><p><strong>Want (d8):</strong> Protection, Money, Revenge, Information, Escape, Power, Connection, Absolution.</p><p><strong>Secret (d8):</strong> Corp agent, Dying, Double-crossing, Protecting someone, Massive debt, Addicted, Used to be important, Knows something dangerous.</p><p><strong>Demeanor (d8):</strong> Nervous, Aggressive, Charming, Cold, Desperate, Evasive, Earnest, Amused.</p></div>
+          <div class="prep-block"><h4>Starter Missions</h4><p><strong>Dead Drop:</strong> Retrieve data from a drowned server room. Pay is too good. Truth: Solvane medical records. Ferrik incoming.</p><p><strong>The Pattern:</strong> Jack in inside the Bleed where nothing should exist to connect to. No client. No pay. Use the Oracle.</p><p><strong>Bad Blood:</strong> Street Doc's patients went cyberpsycho on discount chrome. The chrome is not defective. It is doing exactly what it was designed to do.</p></div>
+        </div>
+        <div class="prep-engagement-row">
+          <div class="prep-block"><h4>Safety Tools</h4><p><strong>Lines</strong>. off the table entirely. <strong>Veils</strong>. exist but happen off-screen. Discuss before play. Add at any time, no explanation needed.</p></div>
+          <div class="prep-block"><h4>Session Zero</h4><p>What kind of cyberpunk? How much chrome? What is off limits? Who are we to each other? First job? Flags (what do you want challenged)?</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="chargen" class="section section-chargen">
+      <div class="section-inner">
+        <div class="section-marker"><span>10</span></div>
+        <div class="section-header-row"><h2 class="section-title">Character Generator</h2><p class="section-subtitle">Fill in your character. Export a black-and-white, printer-friendly PDF.</p></div>
+        <form id="chargen-form" class="chargen-form" autocomplete="off">
+          <div class="cg-row"><div class="cg-field cg-field-wide"><label for="cg-name">Name</label><input type="text" id="cg-name" placeholder="e.g. Kira Vasquez" /></div></div>
+          <div class="cg-row"><div class="cg-field cg-field-wide"><label for="cg-concept">Concept</label><input type="text" id="cg-concept" placeholder="One sentence. Who are you?" /></div></div>
+          <div class="cg-row cg-attributes">
+            <div class="cg-field"><label for="cg-guts">GUTS</label><select id="cg-guts"><option value="">---</option><option>d6</option><option>d8</option><option>d10</option><option>d12</option></select><span class="attr-desc">Force / Endurance</span></div>
+            <div class="cg-field"><label for="cg-edge">EDGE</label><select id="cg-edge"><option value="">---</option><option>d6</option><option>d8</option><option>d10</option><option>d12</option></select><span class="attr-desc">Speed / Reflexes</span></div>
+            <div class="cg-field"><label for="cg-wits">WITS</label><select id="cg-wits"><option value="">---</option><option>d6</option><option>d8</option><option>d10</option><option>d12</option></select><span class="attr-desc">Perception / Tech</span></div>
+            <div class="cg-field"><label for="cg-nerve">NERVE</label><select id="cg-nerve"><option value="">---</option><option>d6</option><option>d8</option><option>d10</option><option>d12</option></select><span class="attr-desc">Composure / Social</span></div>
+          </div>
+          <div class="cg-row"><div class="cg-field cg-field-wide"><label for="cg-tag1">Origin Tag</label><input type="text" id="cg-tag1" placeholder="Where you came from" /></div></div>
+          <div class="cg-row"><div class="cg-field cg-field-wide"><label for="cg-tag2">Role Tag</label><input type="text" id="cg-tag2" placeholder="What you do now" /></div></div>
+          <div class="cg-row"><div class="cg-field cg-field-wide"><label for="cg-tag3">Wildcard Tag</label><input type="text" id="cg-tag3" placeholder="Anything" /></div></div>
+          <div class="cg-row"><div class="cg-field cg-field-wide"><label for="cg-flaw">Flaw</label><input type="text" id="cg-flaw" placeholder="One concrete vulnerability" /></div></div>
+          <div class="cg-row"><div class="cg-field cg-field-wide"><label for="cg-drive">Drive</label><input type="text" id="cg-drive" placeholder="One active goal" /></div></div>
+          <div class="cg-row"><div class="cg-field"><label for="cg-aug1-name">Augment 1</label><input type="text" id="cg-aug1-name" placeholder="Name" /></div><div class="cg-field"><label for="cg-aug1-type">Type</label><select id="cg-aug1-type"><option value="">---</option><option>Chrome</option><option>Skill</option><option>Bond</option><option>Gear</option></select></div></div>
+          <div class="cg-row"><div class="cg-field cg-field-wide"><label for="cg-aug1-ability">Starting Ability</label><input type="text" id="cg-aug1-ability" placeholder="What it does" /></div></div>
+          <div class="cg-row"><div class="cg-field"><label for="cg-aug2-name">Augment 2</label><input type="text" id="cg-aug2-name" placeholder="Name" /></div><div class="cg-field"><label for="cg-aug2-type">Type</label><select id="cg-aug2-type"><option value="">---</option><option>Chrome</option><option>Skill</option><option>Bond</option><option>Gear</option></select></div></div>
+          <div class="cg-row"><div class="cg-field cg-field-wide"><label for="cg-aug2-ability">Starting Ability</label><input type="text" id="cg-aug2-ability" placeholder="What it does" /></div></div>
+          <div class="cg-row"><div class="cg-field"><label for="cg-load">Load Level</label><select id="cg-load"><option>Light (3 slots)</option><option selected>Normal (5 slots)</option><option>Heavy (7 slots)</option></select></div><div class="cg-field"><label for="cg-supply">Supply Die</label><select id="cg-supply"><option>d6</option><option selected>d8</option><option>d10</option><option>d12</option></select></div></div>
+          <div class="cg-row"><div class="cg-field"><label for="cg-conn1-name">Connection 1 (Trusted)</label><input type="text" id="cg-conn1-name" placeholder="Name" /></div><div class="cg-field cg-field-small"><label for="cg-conn1-will">Will</label><select id="cg-conn1-will"><option>d6</option><option selected>d8</option><option>d10</option></select></div></div>
+          <div class="cg-row"><div class="cg-field"><label for="cg-conn2-name">Connection 2 (Wants something)</label><input type="text" id="cg-conn2-name" placeholder="Name" /></div><div class="cg-field cg-field-small"><label for="cg-conn2-will">Will</label><select id="cg-conn2-will"><option selected>d6</option><option>d8</option><option>d10</option></select></div></div>
+          <div class="cg-actions"><button type="button" id="cg-export" class="btn btn-primary btn-export">Export PDF Character Sheet</button><button type="reset" class="btn btn-ghost">Clear Form</button></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-panel" id="modal-panel">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
